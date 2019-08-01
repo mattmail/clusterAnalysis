@@ -1,0 +1,25 @@
+Package: clusterAnalysis
+Title: Several tools for determining the number of clusters in a dataset
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Matthis",
+           family = "Maillard",
+           role = c("aut", "cre"),
+           email = "matthis.maillard3@gmail.com",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Algorithms for determining the number of clusters, including Model Explorer, Fang and Wang's instability measures, Figure of Merit, Last Leap and Last Major Leap.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    cluster,
+    class,
+    anocva,
+    apcluster,
+    graphics,
+    fossil,
+    stats,
+    Rdpack,
+    MASS,
+    spatstat
+RoxygenNote: 6.1.1
