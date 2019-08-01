@@ -12,7 +12,7 @@ statistical_test(X, s, null_distrib = "gaussian")
 \item{s}{number of reference datasets to generate}
 
 \item{null_distrib}{type of the null hypothesis. Can either be "gaussian", "uniform" or "uniformity".
-"gaussian" draws observations from a mulidimensional normal distribtuion with the same mean and variance for each feature as in the original dataset.
+"gaussian" draws observations from a mulidimensional normal distribution with the same mean and variance as in the original dataset for each feature .
 "uniform" draws uniformely observations in the range of each feature. "uniformity" draws observation from a uniform distribution as in gap statistics (Tibshirani et al. 2001).}
 }
 \value{

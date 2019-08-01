@@ -46,10 +46,12 @@ myKmean <- function(X, k){
 mySpectralClustering <- function(X, k, simi){
   A <- simi(X)
   cluster <- spectralClustering(A,k)
+  d <- dim(X)[2]
+  centers <- aggregate(X, rep(list(cluster),d), mean)[,-(1:d)]
   prediction <- function(x){
     knn(X,x,cluster,k=10)
   }
-  return(list("cluster" = cluster, "predict" = prediction))
+  return(list("cluster" = cluster, "predict" = prediction, "centers"=centers))
 }
 
 
