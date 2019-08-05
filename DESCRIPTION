@@ -21,6 +21,8 @@ Imports:
     stats,
     Rdpack,
     MASS,
-    spatstat
+    spatstat,
+    grDevices,
+    car
 RoxygenNote: 6.1.1
 URL: https://github.com/mattmail/clusterAnalysis/
