@@ -18,13 +18,18 @@ statistical_test(X, s, null_distrib = "gaussian")
 \value{
 list of 2 components
 \describe{
-\item{\preformatted{U}}{vector containing the discrepancy measures.}
+\item{\preformatted{U}}{vector containing the discrepancy measures. The first value is the measure for the observed data, the s remaining are for the generated datasets.}
 \item{\preformatted{pvalue}}{proportion of discrepancy measure of the generated datasets that are at least as large as the discrepancy measure of the original dataset.}
 }
 }
 \description{
 Statistical test for checking the clustering of a specified dataset is relevant. Several datasets are generated under a null hypothesis
 and their distribution of nearest neighbours distances are compared with the one of the original dataset.
+}
+\details{
+The function plots the empirical distribution function of the nearest neighbours of the observed data against the empirical distribution under the null hypothesis.
+It also plots the identity line, representing the case where both distributions are in perfect agreement. If the first curve is quickly above the second line it means that it is likely that the clustering is relevant.
+If the returned \preformatted{pvalue} is under 0.03, it is also a hint that the dataset is likely to have clusters.
 }
 \references{
 \itemize{

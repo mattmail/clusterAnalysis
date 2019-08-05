@@ -3,6 +3,10 @@
 #' Statistical test for checking the clustering of a specified dataset is relevant. Several datasets are generated under a null hypothesis
 #' and their distribution of nearest neighbours distances are compared with the one of the original dataset.
 #'
+#' The function plots the empirical distribution function of the nearest neighbours of the observed data against the empirical distribution under the null hypothesis.
+#' It also plots the identity line, representing the case where both distributions are in perfect agreement. If the first curve is quickly above the second line it means that it is likely that the clustering is relevant.
+#' If the returned \preformatted{pvalue} is under 0.03, it is also a hint that the dataset is likely to have clusters.
+#'
 #'
 #' @param X data matrix or data frame of size n x d, n observations and d features
 #' @param s number of reference datasets to generate
@@ -12,7 +16,7 @@
 #'
 #' @return list of 2 components
 #' \describe{
-#' \item{\preformatted{U}}{vector containing the discrepancy measures.}
+#' \item{\preformatted{U}}{vector containing the discrepancy measures. The first value is the measure for the observed data, the s remaining are for the generated datasets.}
 #' \item{\preformatted{pvalue}}{proportion of discrepancy measure of the generated datasets that are at least as large as the discrepancy measure of the original dataset.}
 #' }
 #' @export
@@ -67,7 +71,7 @@ statistical_test <- function(X, s, null_distrib = "gaussian"){
   }
 
   G <- list(ecdf_nn)
-  for (i in 2:s){
+  for (i in 2:(s+1)){
     Z <- apply(param, 2, function(p) distrib(n=n, param[1], param[2]))
     if(null_distrib == "uniformity"){
       Z <- Z %*% t(v)
@@ -84,11 +88,12 @@ statistical_test <- function(X, s, null_distrib = "gaussian"){
     res/(s-1)
   }
   U <- numeric(s)
-  for (i in 1:s){
+  for (i in 1:(s+1)){
     x <- seq(min_dist, max_dist, length = 100)
     U[i] <- sum((G[[i]](x)-estimate_G(i, x))^2)*(x[2]-x[1])
   }
-  plot(function(x){x}, col='blue')
+  plot(function(x){x}, col='blue', main = "Nearest Neighbour distribution", xlab = "ECDF null hypothesis", ylab = "ECDF observed data")
   lines(estimate_G(1,sort(nndistances)), ecdf_nn(sort(nndistances)), col="red")
+  legend("topleft", c("perfect agreement", "ECDF of observations"), fill = c("blue", "red"))
   return(list(U=U, pvalue = sum(U[-1]>=U[1])/(s-1) ))
 }
