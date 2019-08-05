@@ -5,7 +5,7 @@
 #'
 #' The function plots the empirical distribution function of the nearest neighbours of the observed data against the empirical distribution under the null hypothesis.
 #' It also plots the identity line, representing the case where both distributions are in perfect agreement. If the first curve is quickly above the second line it means that it is likely that the clustering is relevant.
-#' If the returned \preformatted{pvalue} is under 0.03, it is also a hint that the dataset is likely to have clusters.
+#' If the returned pvalue is under 0.03, it is also a hint that the dataset is likely to have clusters.
 #'
 #'
 #' @param X data matrix or data frame of size n x d, n observations and d features
