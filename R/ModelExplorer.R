@@ -41,7 +41,12 @@ ModelExplorer <- function(X, maxK, similarity=adj.rand.index, clusterAlg = myKme
       Skb[k-1,b] <- similarity(cl1[is.element(idx1, inter)], cl2[is.element(idx2, inter)])
     }
   }
-  cols = rainbow(maxK)
+  if(maxK >= 20){
+    cols <- rainbow(maxK-1)
+  }
+  else{
+    cols <- c("blue", "green", "orange", "magenta", "cyan", "red", "yellow", "gray","black","purple","pink","brown","blue4","coral","coral2","coral4","azure","darkblue")
+  }
   plot((1:1000/1000), ecdf(Skb[1,])((1:1000/1000)), main = "Cumulative stability distribution" ,type="l", col = cols[1], xlab = "similarity", ylab = "cumulative" )
   for (k in 2:(maxK-1)){
     lines((1:1000/1000), ecdf(Skb[k,])((1:1000/1000)), col= cols[k])
