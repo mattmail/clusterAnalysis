@@ -72,7 +72,7 @@ statistical_test <- function(X, s, null_distrib = "gaussian"){
 
   G <- list(ecdf_nn)
   for (i in 2:(s+1)){
-    Z <- apply(param, 2, function(p) distrib(n=n, param[1], param[2]))
+    Z <- apply(param, 2, function(p) distrib(n=n, p[1], p[2]))
     if(null_distrib == "uniformity"){
       Z <- Z %*% t(v)
     }

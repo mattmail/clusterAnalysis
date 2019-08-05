@@ -66,7 +66,7 @@ clest <- function(X, maxK, clusterAlg = myKmean, similarity = adj.rand.index, pm
       cat('\n')
       print(paste("Reference dataset number", b0))
     }
-    Zref <- apply(rng, 2, function(r, nn) runif(nn, min = r[1], max = r[2]), nn = n)
+    Zref <- apply(rng, 2, function(r) runif(n, min = r[1], max = r[2]))
     Xref <- Zref %*% t(v)
     Skb_ref <- matrix(0, maxK-1,B)
     for (k in 2:maxK){
