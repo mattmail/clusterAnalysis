@@ -51,6 +51,6 @@ bootstrapInstability <- function(X, maxK, B = 50, clusterAlg = myKmean, similari
     }
   }
   inst_mean <- apply(instability,1,mean)
-  plot(2:maxK, inst_mean)
+  plot(2:maxK, inst_mean, main = "Instability", xlab = "number of clusters", ylab = "instability", type = "b")
   return(list("inst_mean"= inst_mean, "kopt"=which.min(inst_mean)+1, "instability"=instability))
 }

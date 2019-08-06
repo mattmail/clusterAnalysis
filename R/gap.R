@@ -2,7 +2,6 @@
 #'
 #' Tibshirani's gap statistic for the determination of the number of clusters. It computes the within cluster dispertion of the partition
 #' and it compares it with the within cluster dispertion of generated datasets having similar statistics to the original.
-#'
 #' The within-cluster dispertion is the normalized sum for each cluster of the sum of the distance between each pair in a cluster.
 #'
 #' @param X data matrix or data frame of size n x d, n observations and d features
@@ -16,6 +15,7 @@
 #' @param verbose logical, if TRUE, plots the evolution of the algorithm
 #' @param ... additional parameters for the clustering algorithm
 #'
+#' @export
 #' @importFrom MASS mvrnorm
 #' @importFrom stats runif dist
 #'
@@ -25,7 +25,7 @@
 #' \item{\preformatted{gap}}{vector of values for the gap statistic}
 #' \item{\preformatted{s}}{empirical standard deviation of the gap statistic}
 #' }
-#' @export
+#' @references Tibshirani, R., Walther, G., and Hastie, T. (2001). Estimating the number of clusters in a data set via the gap statistic.Journal of the Royal Statistical Society Series B, 63:411-423.
 #'
 Gap <- function(X, maxK, clusterAlg = myKmean, B = 50, null_distrib = "gaussian", verbose = TRUE, ...){
   X <- as.matrix(X)

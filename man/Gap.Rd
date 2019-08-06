@@ -19,7 +19,7 @@ For more details, check the formatting of function \code{\link{myKmean}}.}
 
 \item{null_distrib}{type of the null hypothesis. Can either be "gaussian", "uniform" or "uniformity".
 "gaussian" draws observations from a mulidimensional normal distribution with the same mean and variance as in the original dataset for each feature .
-"uniform" draws uniformely observations in the range of each feature. "uniformity" draws observation from a uniform distribution as in gap statistics (Tibshirani et al. 2001).#' @param verbose logical, if TRUE it plots the evolution of the algorithm}
+"uniform" draws uniformely observations in the range of each feature. "uniformity" draws observation from a uniform distribution as in gap statistics (Tibshirani et al. 2001)}
 
 \item{verbose}{logical, if TRUE, plots the evolution of the algorithm}
 
@@ -36,7 +36,8 @@ list of 3 components
 \description{
 Tibshirani's gap statistic for the determination of the number of clusters. It computes the within cluster dispertion of the partition
 and it compares it with the within cluster dispertion of generated datasets having similar statistics to the original.
-}
-\details{
 The within-cluster dispertion is the normalized sum for each cluster of the sum of the distance between each pair in a cluster.
+}
+\references{
+Tibshirani, R., Walther, G., and Hastie, T. (2001). Estimating the number of clusters in a data set via the gap statistic.Journal of the Royal Statistical Society Series B, 63:411-423.
 }
