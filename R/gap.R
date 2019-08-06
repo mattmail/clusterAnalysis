@@ -12,7 +12,7 @@
 #' @param B number of reference datasets to generate
 #' @param null_distrib type of the null hypothesis. Can either be "gaussian", "uniform" or "uniformity".
 #' "gaussian" draws observations from a mulidimensional normal distribution with the same mean and variance as in the original dataset for each feature .
-#' "uniform" draws uniformely observations in the range of each feature. "uniformity" draws observation from a uniform distribution as in gap statistics (Tibshirani et al. 2001).#' @param verbose logical, if TRUE it plots the evolution of the algorithm
+#' "uniform" draws uniformely observations in the range of each feature. "uniformity" draws observation from a uniform distribution as in gap statistics (Tibshirani et al. 2001)
 #' @param verbose logical, if TRUE, plots the evolution of the algorithm
 #' @param ... additional parameters for the clustering algorithm
 #'
