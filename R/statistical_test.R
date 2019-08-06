@@ -23,10 +23,7 @@
 #'
 #' @importFrom spatstat nndist
 #' @importFrom MASS mvrnorm
-#' @importFrom stats runif
-#' @importFrom stats prcomp
-#' @importFrom stats var
-#' @importFrom stats ecdf
+#' @importFrom stats runif prcomp var ecdf
 #'
 #' @references
 #' \itemize{

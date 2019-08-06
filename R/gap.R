@@ -13,13 +13,21 @@
 #' @param null_distrib type of the null hypothesis. Can either be "gaussian", "uniform" or "uniformity".
 #' "gaussian" draws observations from a mulidimensional normal distribution with the same mean and variance as in the original dataset for each feature .
 #' "uniform" draws uniformely observations in the range of each feature. "uniformity" draws observation from a uniform distribution as in gap statistics (Tibshirani et al. 2001).#' @param verbose logical, if TRUE it plots the evolution of the algorithm
+#' @param verbose logical, if TRUE, plots the evolution of the algorithm
 #' @param ... additional parameters for the clustering algorithm
 #'
-#' @return
+#' @importFrom MASS mvrnorm
+#' @importFrom stats runif dist
+#'
+#' @return list of 3 components
+#' \describe{
+#' \item{\preformatted{kopt}}{optimal number of clusters}
+#' \item{\preformatted{gap}}{vector of values for the gap statistic}
+#' \item{\preformatted{s}}{empirical standard deviation of the gap statistic}
+#' }
 #' @export
 #'
-#' @examples
-Gap <- function(X, maxK, clusterAlg = myKmean, B = 50, null_hypothesis = "gaussian", verbose = TRUE, ...){
+Gap <- function(X, maxK, clusterAlg = myKmean, B = 50, null_distrib = "gaussian", verbose = TRUE, ...){
   X <- as.matrix(X)
   W <- numeric(maxK+1)
   n <- nrow(X)
@@ -34,7 +42,7 @@ Gap <- function(X, maxK, clusterAlg = myKmean, B = 50, null_hypothesis = "gaussi
   }
 
   Wb <- matrix(0, maxK+1, B)
-  switch(null_hypothesis,
+  switch(null_distrib,
     gaussian = {
       param <- rbind(apply(X, 2, mean), apply(X,2,var))
       distrib <- mvrnorm
@@ -56,7 +64,7 @@ Gap <- function(X, maxK, clusterAlg = myKmean, B = 50, null_hypothesis = "gaussi
     }
 
     Xb <- apply(param, 2, function(p) distrib(n=n, p[1], p[2]))
-    if (null_hypothesis == "uniformity"){
+    if (null_distrib == "uniformity"){
       Xb <- Xb %*% t(v)
     }
 
