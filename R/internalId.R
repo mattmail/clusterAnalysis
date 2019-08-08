@@ -28,7 +28,15 @@ sil <- function(X, cluster){
 ch <- function(X, cluster){
   n <- nrow(X)
   k <- length(table(cluster))
-  W <- sum(aggregate(1:n, list(cluster), function(i){if(is.matrix(X[i,])){return(sum((t(X[i,]) - apply(X[i,], 2, mean))^2) / length(i))} else {return(0)}})[-1])
-  B <- sum(aggregate(1:n, list(cluster), function(i){if(is.matrix(X[i,])){return(sum((apply(X,2,mean) - apply(X[i,], 2, mean))^2) * length(i))} else {return(sum((X[i,]-apply(X,2,mean))^2))}})[-1])
+  nk <- table(cluster)
+  d <- mean(dist(X)^2)
+  dk <- aggregate(1:n, list(cluster), function(i) if(is.matrix(X[i,])){return(mean(dist(X[i,])^2))} else{return(0)})[-1]
+  W <- 0.5*sum((nk-1)*dk)
+  A <- sum((nk-1)*(d-dk))
+  B <- 0.5*((k-1)*d +A)
   return(B * (n-k)/(W * (k-1)))
+}
+
+dunn <- function(X, cluster){
+
 }
