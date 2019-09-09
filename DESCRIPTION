@@ -19,7 +19,6 @@ Imports:
     graphics,
     fossil,
     stats,
-    Rdpack,
     MASS,
     spatstat,
     grDevices,

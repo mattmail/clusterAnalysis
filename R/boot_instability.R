@@ -22,7 +22,6 @@
 #' \item{\preformatted{instability}}{matrix containing the instability measures for all cluster number and all subsampling iterations.}
 #' }
 #' @export
-#' @importFrom Rdpack reprompt
 #' @importFrom fossil adj.rand.index
 #'
 #' @references  Fang, Y. and Wang, J. (2012). Selection of the number of clusters via the bootstrap method. Computational Statistics  Data Analysis, 56:468-477.
