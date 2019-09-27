@@ -10,8 +10,10 @@ sil <- function(X, cluster){
 }
 
 ch <- function(X, cluster){
+  X <- as.matrix(X)
   n <- nrow(X)
   d <- ncol(X)
+  k <- length(table(cluster))
   nk <- table(cluster)
   wk <- aggregate(1:n, list(cluster), function(i) if(is.matrix(X[i,])){return(cov(X[i,]))} else{return(0)})[-1]
   W <- matrix(apply((nk-1)*wk, 2, sum), nrow = d)
@@ -20,6 +22,7 @@ ch <- function(X, cluster){
 }
 
 db <- function(X, cluster, p=2){
+  X <- as.matrix(X)
   n <- nrow(X)
   d <- ncol(X)
   k <- length(table(cluster))

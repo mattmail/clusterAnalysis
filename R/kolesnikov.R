@@ -17,10 +17,11 @@
 #' @export
 #'
 #' @references Kolesnikov, A., Trichina, E., and Kauranne, T. (2015). Estimating the number of clusters in a numerical data set via quantizationerror modeling.Pattern Recognition, 48:941-952.
-kolesnikov <- function(X, maxK, clusterAlg = myKmean){
+kolesnikov <- function(X, maxK, clusterAlg = myKmean, ...){
+  X <- as.matrix(X)
   W <- array(0, maxK)
   for (k in 1:maxK){
-    clustering <- clusterAlg(X, k)
+    clustering <- clusterAlg(X, k, ...)
     centers <- clustering$centers
     dist <- X - centers[clustering$cluster,]
     W[k] <- sum(dist^2)

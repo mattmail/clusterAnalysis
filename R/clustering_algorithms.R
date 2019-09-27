@@ -21,7 +21,7 @@ myKmean <- function(X, k){
     cluster.dist <- apply(res$centers, 1, function(y) sqrt(sum((x-y)^2)))
     return(which.min(cluster.dist)[1])}
     return(apply(Z, 1, closest.point))
-  }, "centroids" = res$centers)
+  }, "centers" = res$centers)
 }
 
 
@@ -43,9 +43,9 @@ myKmean <- function(X, k){
 #' }
 #' @export
 #'
-mySpectralClustering <- function(X, k, simi){
+mySpectralClustering <- function(X, k, simi = expSimMat, ...){
   A <- simi(X)
-  cluster <- spectralClustering(A,k)
+  cluster <- spectralClustering(A, k, ...)
   d <- dim(X)[2]
   centers <- aggregate(X, rep(list(cluster),d), mean)[,-(1:d)]
   prediction <- function(x){
@@ -112,3 +112,13 @@ myPam <- function(X,k, ...){
   }
   return(list("cluster"=pa$clustering, "centers"=pa$medoids, "predict"= prediction))
 }
+
+
+myEM <- function(X,k, ...){
+  em <- Mclust(X,k, verbose = F, ...)
+  prediction <- function(x){
+    predict.Mclust(em, x)$classification
+  }
+  return(list("cluster"=em$classification, "centers"=t(em$parameters$mean), "predict"= prediction))
+}
+
